@@ -1,0 +1,79 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Sora:wght@100..800&display=swap");
+
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme inline {
+  --font-sora:
+    "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-bad_script: "Bad Script";
+
+  /* Functional Mapping */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  /* Brand Accents */
+  --color-primary: var(--primary);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+
+  /* Utilities */
+  --color-grid-line: var(--grid-line);
+  --color-copy: var(--muted-foreground);
+}
+
+:root {
+  --foreground: oklch(18% 0.012 60);
+  --background: oklch(97% 0.008 70);
+  --muted: oklch(92% 0.01 65);
+  --muted-foreground: oklch(52% 0.014 60);
+  --border: oklch(84% 0.014 65);
+
+  --primary: oklch(48% 0.04 60);
+  --success: oklch(55% 0.1 155);
+  --warning: oklch(68% 0.12 78);
+  --error: oklch(52% 0.12 20);
+
+  --radius: 1rem;
+}
+
+:root[data-theme="dark"] {
+  --foreground: oklch(92% 0.008 65);
+  --background: oklch(14% 0.01 60);
+  --muted: oklch(18% 0.012 58);
+  --muted-foreground: oklch(42% 0.012 58);
+  --border: oklch(26% 0.016 58 / 0.6);
+
+  --primary: oklch(62% 0.04 60);
+  --success: oklch(66% 0.1 155);
+  --warning: oklch(74% 0.13 80);
+  --error: oklch(62% 0.12 20);
+}
+
+@layer base {
+  * {
+    @apply border-border box-border outline-none;
+  }
+  html {
+    @apply scroll-smooth font-sans antialiased select-none;
+  }
+  body {
+    @apply bg-background text-foreground text-sm;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: var(--foreground);
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px var(--background);
+  }
+}
