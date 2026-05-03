@@ -41,7 +41,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
       </head>
-      <body className="font-sora relative flex h-dvh flex-1 flex-col antialiased">
+      <body className="font-sora flex min-h-dvh flex-col antialiased">
         <Header />
         {children}
         <Footer />

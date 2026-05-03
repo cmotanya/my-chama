@@ -1,5 +1,6 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap"); */
-@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Sora:wght@100..800&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Sora:wght@100..800&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Sora:wght@100..800&family=Unbounded:wght@200..900&display=swap");
 
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
@@ -8,6 +9,7 @@
   --font-sora:
     "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-bad_script: "Bad Script";
+  --font-unbounded: "Unbounded";
 
   /* Functional Mapping */
   --color-background: var(--background);
@@ -22,10 +24,6 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
-
-  /* Utilities */
-  --color-grid-line: var(--grid-line);
-  --color-copy: var(--muted-foreground);
 }
 
 :root {
@@ -40,7 +38,7 @@
   --warning: oklch(68% 0.12 78);
   --error: oklch(52% 0.12 20);
 
-  --radius: 1rem;
+  --radius: 24px;
 }
 
 :root[data-theme="dark"] {
@@ -64,7 +62,7 @@
     @apply scroll-smooth font-sans antialiased select-none;
   }
   body {
-    @apply bg-background text-foreground text-sm;
+    @apply bg-background text-foreground text-base;
   }
 
   input:-webkit-autofill,
@@ -76,4 +74,106 @@
     transition: background-color 5000s ease-in-out 0s;
     box-shadow: inset 0 0 20px 20px var(--background);
   }
+}
+
+.btn-primary {
+  background: var(--foreground);
+  color: var(--background);
+  width: 100%;
+  padding-block: 18px;
+  font-size: 16px;
+  border-radius: var(--radius);
+  text-transform: uppercase;
+  transition:
+    opacity 0.18s,
+    transform 0.15s;
+
+  &:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.btn-outline {
+  border: 1px solid var(--border);
+  color: var(--muted-foreground);
+  padding-block: 18px;
+  width: 100%;
+  border-radius: var(--radius);
+  font-size: 16px;
+  text-transform: uppercase;
+  transition:
+    border-color 0.18s,
+    color 0.18s,
+    transform 0.15s;
+
+  &:hover {
+    border-color: var(--primary);
+    color: var(--foreground);
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fu1 {
+  animation: fadeUp 0.55s 0.05s ease both;
+}
+.fu2 {
+  animation: fadeUp 0.55s 0.13s ease both;
+}
+.fu3 {
+  animation: fadeUp 0.55s 0.21s ease both;
+}
+.fu4 {
+  animation: fadeUp 0.55s 0.29s ease both;
+}
+.fu5 {
+  animation: fadeUp 0.55s 0.37s ease both;
+}
+.fu6 {
+  animation: fadeUp 0.55s 0.45s ease both;
+}
+.fu7 {
+  animation: fadeUp 0.55s 0.53s ease both;
+}
+.fu8 {
+  animation: fadeUp 0.55s 0.61s ease both;
+}
+.fu9 {
+  animation: fadeUp 0.55s 0.69s ease both;
+}
+.fu10 {
+  animation: fadeUp 0.55s 0.77s ease both;
+}
+.fu11 {
+  animation: fadeUp 0.55s 0.85s ease both;
+}
+.fu12 {
+  animation: fadeUp 0.55s 0.93s ease both;
+}
+.fu13 {
+  animation: fadeUp 0.55s 1.01s ease both;
+}
+.fu14 {
+  animation: fadeUp 0.55s 1.09s ease both;
+}
+.fu15 {
+  animation: fadeUp 0.55s 1.17s ease both;
+}
+.fu16 {
+  animation: fadeUp 0.55s 1.25s ease both;
 }
