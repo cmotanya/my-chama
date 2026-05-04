@@ -1,7 +1,7 @@
 {
   "name": "My-Chama — Where Your Chama Thrives",
   "short_name": "My-Chama",
-  "description": "Modern platform for managing Kenyan investment groups — automate contributions, track loans, and reconcile M-Pesa payments in one place.",
+  "description": "Modern platform for managing Kenyan investment groups — automate contributions, track loans, and reconcile M-Pesa payments all in one place.",
   "icons": [
     {
       "src": "/icons/android-chrome-192x192.png",

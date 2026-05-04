@@ -170,3 +170,47 @@ export const pricingPlan = [
     featured: true,
   },
 ];
+
+export const faqs = [
+  {
+    question: "Do I need technical knowledge to set up my My-Chama?",
+    answer:
+      "Not at all. If you need to use WhatsApp, you can use My-Chama. Setup takes under 5 minutes and we walk you through every step.",
+  },
+  {
+    question: "Is my group's money safe on the platform?",
+    answer:
+      "My-Chama does not hold your money. All transactions happen through M-Pesa directly. We only record and track — your funds stay in your M-Pesa accounts at all times.",
+  },
+  {
+    question: "What happens if a member misses a contribution?",
+    answer:
+      "The system flags the missed contribution automatically and sends a reminder to the member. The treasurer can also apply penalties as per your group's rules.",
+  },
+  {
+    question: "Can we export our financial records?",
+    answer:
+      "Yes. Generate a full PDF report of contributions, loans, repayments, and balances at any time. Your records are always yours to keep.",
+  },
+  {
+    question: "What if our group grows beyond the plan limit?",
+    answer:
+      "You will be notified when you approach your member limit. Upgrading to the next plan takes one tap and your data carries over seamlessly.",
+  },
+  {
+    question: "How do we get support if something goes wrong?",
+    answer:
+      "You can reach us via phone or email directly. Real people, not bots. We are based in Kenya and understand exactly how your group operates.",
+  },
+
+  {
+    question: "Can other groups see our data?",
+    answer:
+      "Never. Each group has its own isolated workspace. No persons from other groups can see your contributions, loans, or member list. Your group's data is securely private.",
+  },
+  {
+    question: "How does M-Pesa integration work?",
+    answer:
+      "Members contribute via M-Pesa STK push, SIM Toolkit, or USSD code to the group's paybill or till number. The payment reflects in the group ledger automatically — no manual entry needed.",
+  },
+];

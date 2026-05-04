@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   advantages,
+  faqs,
   plannedReleases,
   pricingPlan,
   releasedProducts,
@@ -9,11 +10,19 @@ import {
   testimonials,
 } from "../../data/landing";
 import { cn } from "../../lib/cn";
-import { CheckmarkBadge01Icon, Tick02Icon } from "hugeicons-react";
+import {
+  ArrowDown01Icon,
+  ArrowUp01Icon,
+  CheckmarkBadge01Icon,
+  Tick02Icon,
+} from "hugeicons-react";
+import { useState } from "react";
 
 export const Route = createFileRoute("/")({ component: App });
 
 function App() {
+  const [open, setOpen] = useState<number | null>(null);
+
   return (
     <main className="h-screen flex-1 py-15">
       <section className="h-full space-y-8">
@@ -309,6 +318,80 @@ function App() {
                 </button>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* FAQs */}
+        <div className="fu12 my-15 space-y-5 px-4">
+          <h2 className="text-primary text-center text-4xl font-bold">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-muted-foreground">
+            Everything you need to know before getting started.
+          </p>
+
+          <div className="space-y-6">
+            {faqs.map((faq, index) => {
+              const toggle = (i: number) => {
+                setOpen(open === i ? null : i);
+              };
+
+              return (
+                <div
+                  key={faq.question}
+                  className={cn(
+                    "space-y-2 overflow-hidden rounded-3xl border p-3 transition-all duration-300 ease-in-out",
+                    open === index ? "bg-muted border" : "border-border/50",
+                  )}
+                >
+                  <button
+                    onClick={() => toggle(index)}
+                    className="flex w-full items-center justify-between gap-4"
+                  >
+                    <span className="text-left text-sm font-semibold">
+                      {faq.question}
+                    </span>
+
+                    <ArrowDown01Icon
+                      className={cn(
+                        "shrink-0 transition-all duration-300",
+                        open === index ? "rotate-180" : "rotate-0",
+                      )}
+                    />
+                  </button>
+
+                  <p
+                    className={cn(
+                      "text-muted-foreground overflow-hidden text-xs leading-snug transition-all duration-300 ease-in-out",
+                      open === index
+                        ? "min-h-max opacity-100"
+                        : "h-0 opacity-0",
+                    )}
+                  >
+                    {faq.answer}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="bg-muted-foreground space-y-4 p-5">
+          <h2 className="text-center text-4xl font-bold">
+            Ready to Start Your Chama?
+          </h2>
+          <p>
+            Join other groups who have moved from WhatsApp to a platform that
+            actually works. Set is easy and simple.{" "}
+          </p>
+
+          <div className="flex flex-col gap-4">
+            <button className="btn-primary font-semibold">
+              Get Started Today
+            </button>
+            <button className="btn-outline text-background font-semibold">
+              View Pricing
+            </button>
           </div>
         </div>
       </section>
