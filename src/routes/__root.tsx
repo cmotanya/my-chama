@@ -12,22 +12,31 @@ const THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getIte
 export const Route = createRootRoute({
   head: () => ({
     meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: "My-Chama — Where Your Chama Thrives" },
       {
-        charSet: "utf-8",
+        name: "description",
+        content:
+          "Modern platform for managing Kenyan investment groups — automate contributions, track loans, and reconcile M-Pesa payments in one place.",
       },
+      { name: "author", content: "Cornelius Motanya" },
+      { name: "theme-color", content: "#C8A96E" },
+      { property: "og:title", content: "My-Chama — Where Your Chama Thrives" },
       {
-        name: "viewport",
-        content: "width=device-width, initial-scale=1",
+        property: "og:description",
+        content:
+          "Automate contributions, approve loans, and track M-Pesa payments in one platform built for Kenyan investment groups.",
       },
-      {
-        title: "TanStack Start Starter",
-      },
+      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_KE" },
+      { property: "og:site_name", content: "My-Chama" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "stylesheet", href: appCss },
+      { rel: "manifest", href: "/site.webmanifest" },
+      { rel: "icon", href: "/favicon.ico" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
     ],
   }),
   errorComponent: RouteErrorComponent,
