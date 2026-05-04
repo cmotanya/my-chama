@@ -3,13 +3,11 @@ import {
   AddTeamIcon,
   ArrowDown03Icon,
   Coins01Icon,
-  Configuration01Icon,
   CrowdfundingIcon,
   HealthIcon,
   MoneyBag02Icon,
   MoneySavingJarIcon,
   Payment02Icon,
-  Settings01Icon,
   StartUp01Icon,
   UserGroupIcon,
 } from "hugeicons-react";
@@ -17,7 +15,7 @@ import {
 export const stats = [
   {
     icon: UserGroupIcon,
-    value: "5+",
+    value: "0",
     label: "Groups",
     color: "text-primary",
     bg: "bg-primary/20",
@@ -116,16 +114,59 @@ export const advantages = [
 export const testimonials = [
   {
     name: "Abdi H.",
-    role: "Nyumba Yetu Chama",
+    role: "Chairperson, Nyumba Yetu Chama",
     location: "Changamwe",
     quote:
       "I was skeptical at first but the setup took less than 5 minutes. Our group of 22 members was fully onboard the same evening.",
   },
   {
     name: "Grace M.",
-    role: "Faida Women's Group",
+    role: "Treasurer, Faida Women's Fund",
     location: "Nyali",
     quote:
-      "My-Chama handles our rotation and approvals with precision. No more trails of unclaimed balances or arrears from members.",
+      "Loan repayments used to be a nightmare to track across 30 members. The automatic reminders and repayment schedule have made my job easier.",
+  },
+  {
+    name: "Rose O.",
+    role: "Chairperson, Mama Pesa Circle",
+    location: "Kisii",
+    quote:
+      "We tried two other app before MY-Chama. They were too complicated, this platform provided us with features that were easy to use and works for us. ",
+  },
+];
+
+export const pricingPlan = [
+  {
+    name: "Starter",
+    price: "KES 999",
+    period: "per month",
+    description: "Perfect for small groups getting started.",
+    members: "Up to 20 members",
+    features: [
+      "Automated rotation ledger",
+      "Member directory",
+      "Real-time contribution tracking",
+      "Basic PDF reports",
+      "M-Pesa manual entry",
+      "Email and WhatsApp support",
+    ],
+    cta: "Get Started",
+    featured: false,
+  },
+  {
+    name: "Growth",
+    price: "KES 1,499",
+    period: "per month",
+    description: "Active groups that need full automation.",
+    members: "Up to 50 members",
+    features: [
+      "Everything in Start",
+      "Automatic M-Pesa reconciliation",
+      "Loan interest and math",
+      "Repayment reminders via SMS.",
+      "Priority Technical Support",
+    ],
+    cta: "Get Started",
+    featured: true,
   },
 ];

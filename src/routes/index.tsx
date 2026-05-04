@@ -2,13 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   advantages,
   plannedReleases,
+  pricingPlan,
   releasedProducts,
   stats,
   steps,
   testimonials,
 } from "../../data/landing";
 import { cn } from "../../lib/cn";
-import { CheckmarkBadge01Icon, QuoteUpIcon, Tick01Icon } from "hugeicons-react";
+import { CheckmarkBadge01Icon, Tick02Icon } from "hugeicons-react";
 
 export const Route = createFileRoute("/")({ component: App });
 
@@ -54,13 +55,19 @@ function App() {
           </Link>
         </div>
 
+        {/* Stats */}
         <div className="fu5 my-15 grid grid-cols-2 gap-3 px-4">
           {stats.map(({ value, label, color, bg, border, icon: Icon }) => (
             <div
               key={value}
-              className="bg-muted flex w-full flex-col items-center gap-3.5 rounded-3xl border p-4"
+              className="bg-muted flex w-full flex-col items-center gap-4 rounded-3xl border px-3 py-5"
             >
-              <p className={cn("text-primary text-3xl font-semibold", color)}>
+              <p
+                className={cn(
+                  "text-primary font-unbounded text-3xl font-semibold",
+                  color,
+                )}
+              >
                 {value}
               </p>
               <div className="flex w-full items-center justify-center gap-4">
@@ -69,7 +76,7 @@ function App() {
                   size={30}
                   className={cn("rounded-lg border p-1", bg, border)}
                 />
-                <p className="text-xs font-medium tracking-widest uppercase">
+                <p className="text-xs font-semibold tracking-widest uppercase">
                   {label}
                 </p>
               </div>
@@ -128,7 +135,7 @@ function App() {
                     <p className="text-muted-foreground text-sm">{body}</p>
                   </div>
 
-                  <span className="bg-success text-background absolute -top-2.5 right-0 z-50 rounded-lg p-1 text-[10px] font-semibold tracking-wider backdrop-blur-sm">
+                  <span className="bg-success text-background absolute -top-2.5 right-3 z-50 rounded-lg px-1.5 py-1 text-[10px] font-semibold backdrop-blur-sm">
                     Coming soon
                   </span>
                 </div>
@@ -144,7 +151,7 @@ function App() {
               How is it used?
             </h2>
             <p>
-              Get your group up and running in four simple steps, from{" "}
+              Get your group up and running in three simple steps, from{" "}
               <span className="text-foreground font-bold"> registration</span>{" "}
               to your first{" "}
               <span className="text-foreground font-bold">transaction</span>.
@@ -204,7 +211,7 @@ function App() {
             What people say
           </h2>
           <p>
-            Feedback from what <strong>treasures</strong> and{" "}
+            Feedback from what <strong>treasurers</strong> and{" "}
             <strong>chairpersons</strong> running their groups on My-Chama
             share.
           </p>
@@ -230,8 +237,76 @@ function App() {
 
                 <div className="text-sm font-bold">
                   <p>{t.name}</p>
-                  <p>{t.role}</p>
+                  <p className="text-primary tracking-wide uppercase">
+                    {t.role}
+                  </p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Pricing */}
+        <div className="fu12 my-15 space-y-5 px-4">
+          <h2 className="text-primary text-center text-4xl font-bold">
+            Select Your Plan
+          </h2>
+          <p>
+            Starting with a low price, you can get your group up and running,
+            without breaking a bank. Try out our plans and see how it works.
+          </p>
+
+          <div className="grid grid-cols-1 gap-4">
+            {pricingPlan.map((plan) => (
+              <div
+                key={plan.name}
+                className="relative space-y-3 rounded-3xl border p-5"
+              >
+                <h3 className="font-unbounded text-xl font-semibold tracking-wider">
+                  {plan.name}
+                </h3>
+
+                {plan.featured && (
+                  <span className="bg-success text-background absolute -top-3 left-1/2 -translate-x-1/2 rounded-lg px-2 py-1 text-sm font-semibold">
+                    Popular
+                  </span>
+                )}
+
+                <div>
+                  <span className="text-primary text-4xl font-extrabold">
+                    {plan.price}
+                  </span>{" "}
+                  <span className="text-muted-foreground text-xs font-semibold">
+                    /{plan.period}
+                  </span>
+                </div>
+
+                <p className="font text-primary text-sm tracking-wider">
+                  {plan.members}
+                </p>
+                <p className="text-muted-foreground text-sm font-semibold">
+                  {plan.description}
+                </p>
+
+                <ul className="space-y-1">
+                  {plan.features.map((f) => (
+                    <li key={f} className="flex items-center gap-2 text-sm">
+                      <Tick02Icon strokeWidth={2} color="#417505" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <button
+                  className={cn(
+                    "mt-5 w-full rounded-2xl border py-3 font-bold uppercase",
+                    plan.featured
+                      ? "bg-success text-background"
+                      : "bg-muted text-muted-foreground",
+                  )}
+                >
+                  {plan.cta}
+                </button>
               </div>
             ))}
           </div>
