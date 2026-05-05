@@ -1,9 +1,18 @@
-import { CallIcon, Mail01Icon } from "hugeicons-react";
+import {
+  CallIcon,
+  Mail01Icon,
+  InstagramIcon,
+  NewTwitterIcon,
+  WhatsappIcon,
+  TiktokIcon,
+} from "hugeicons-react";
 
 export const products = [
-  { link: "Our Features" },
-  { link: "How It Works" },
-  { link: "Pricing" },
+  { name: "Our Features", link: "#features" },
+  { name: "How It Works", link: "#how-it-works" },
+  { name: "Pricing", link: "#pricing" },
+  { name: "FAQs", link: "#faq" },
+  { name: "Testimonials", link: "#testimonials" },
 ];
 
 export const support = [
@@ -13,4 +22,31 @@ export const support = [
     name: "motanya.dev@gmail.com",
     link: "mailto:motanya.dev@gmail.com",
   },
+  {
+    icon: WhatsappIcon,
+    name: "WhatsApp Us",
+    link: "https://wa.me/254712909475",
+  },
+];
+
+export const company = [
+  { link: "About Us", href: "/about" },
+  { link: "Careers", href: "/careers" },
+  { link: "Blog", href: "/blog" },
+  { link: "Affiliate Program", href: "/affiliate" },
+];
+
+export const social = [
+  {
+    icon: InstagramIcon,
+    name: "Instagram",
+    link: "https://instagram.com/mychama",
+  },
+  { icon: NewTwitterIcon, name: "Twitter / X", link: "https://x.com/mychama" },
+  { icon: TiktokIcon, name: "TilTok", link: "https://tiktok.com/mychama" },
+];
+
+export const legal = [
+  { name: "Terms of Service", link: "/terms" },
+  { name: "Privacy Policy", link: "/privacy" },
 ];

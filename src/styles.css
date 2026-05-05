@@ -83,6 +83,7 @@
   padding-block: 18px;
   font-size: 16px;
   border-radius: var(--radius);
+  cursor: pointer;
   text-transform: uppercase;
   transition:
     opacity 0.18s,
@@ -99,11 +100,12 @@
 
 .btn-outline {
   border: 1px solid var(--border);
-  padding-block: 18px;
+  padding-block: 16px;
   width: 100%;
   border-radius: var(--radius);
   font-size: 16px;
   text-transform: uppercase;
+  cursor: pointer;
   transition:
     border-color 0.18s,
     color 0.18s,

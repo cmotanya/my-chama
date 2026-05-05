@@ -12,7 +12,6 @@ import {
 import { cn } from "../../lib/cn";
 import {
   ArrowDown01Icon,
-  ArrowUp01Icon,
   CheckmarkBadge01Icon,
   Tick02Icon,
 } from "hugeicons-react";
@@ -59,9 +58,9 @@ function App() {
             <button className="btn-primary shadow-xl">Launch Test Demo</button>
           </Link>
 
-          <Link to="/about">
+          <a href="#features">
             <button className="btn-outline shadow-xl">Explore Features</button>
-          </Link>
+          </a>
         </div>
 
         {/* Stats */}
@@ -94,7 +93,7 @@ function App() {
         </div>
 
         {/* Who is it for? */}
-        <div className="my-15 space-y-3 px-4">
+        <div id="features" className="my-15 space-y-3 px-4">
           <div className="fu6 space-y-3">
             <h2 className="text-primary text-center text-4xl font-bold">
               Who Is It For?
@@ -154,7 +153,7 @@ function App() {
         </div>
 
         {/* How is it used? */}
-        <div className="fu9 my-15 space-y-5 px-4">
+        <div id="how-it-works" className="fu9 my-15 space-y-5 px-4">
           <div className="space-y-3">
             <h2 className="text-primary text-center text-4xl font-bold">
               How is it used?
@@ -215,7 +214,7 @@ function App() {
         </div>
 
         {/* What Customers Say */}
-        <div className="fu11 my-15 space-y-5 px-4">
+        <div id="testimonials" className="fu11 my-15 space-y-5 px-4">
           <h2 className="text-primary text-center text-4xl font-bold">
             What people say
           </h2>
@@ -256,7 +255,7 @@ function App() {
         </div>
 
         {/* Pricing */}
-        <div className="fu12 my-15 space-y-5 px-4">
+        <div id="pricing" className="fu12 my-15 space-y-5 px-4">
           <h2 className="text-primary text-center text-4xl font-bold">
             Select Your Plan
           </h2>
@@ -322,7 +321,7 @@ function App() {
         </div>
 
         {/* FAQs */}
-        <div className="fu12 my-15 space-y-5 px-4">
+        <div id="faq" className="fu12 my-15 space-y-5 px-4">
           <h2 className="text-primary text-center text-4xl font-bold">
             Frequently Asked Questions
           </h2>
@@ -346,7 +345,7 @@ function App() {
                 >
                   <button
                     onClick={() => toggle(index)}
-                    className="flex w-full items-center justify-between gap-4"
+                    className="flex w-full cursor-pointer items-center justify-between gap-4"
                   >
                     <span className="text-left text-sm font-semibold">
                       {faq.question}
@@ -376,8 +375,8 @@ function App() {
           </div>
         </div>
 
-        <div className="bg-muted-foreground space-y-4 p-5">
-          <h2 className="text-center text-4xl font-bold">
+        <div className="space-y-4 p-5">
+          <h2 className="text-primary text-center text-4xl font-bold">
             Ready to Start Your Chama?
           </h2>
           <p>
@@ -385,13 +384,17 @@ function App() {
             actually works. Set is easy and simple.{" "}
           </p>
 
-          <div className="flex flex-col gap-4">
-            <button className="btn-primary font-semibold">
-              Get Started Today
-            </button>
-            <button className="btn-outline text-background font-semibold">
-              View Pricing
-            </button>
+          <div className="mt-8 flex flex-col gap-3">
+            <Link to="/">
+              <button className="btn-primary bg-primary font-semibold">
+                Get Started Today
+              </button>
+            </Link>
+            <a href="#pricing">
+              <button className="btn-outline font-semibold shadow-xl">
+                View Pricing
+              </button>
+            </a>
           </div>
         </div>
       </section>
