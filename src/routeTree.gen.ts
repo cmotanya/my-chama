@@ -9,68 +9,231 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as NotFoundRouteImport } from './routes/not-found'
+import { Route as AuthedRouteRouteImport } from './routes/_authed/route'
+import { Route as publicRouteRouteImport } from './routes/(public)/route'
+import { Route as authRouteRouteImport } from './routes/(auth)/route'
+import { Route as publicIndexRouteImport } from './routes/(public)/index'
+import { Route as AuthedOnboardingRouteImport } from './routes/_authed/onboarding'
+import { Route as AuthedDashboardRouteImport } from './routes/_authed/dashboard'
+import { Route as authSignupRouteImport } from './routes/(auth)/signup'
+import { Route as authLoginRouteImport } from './routes/(auth)/login'
 
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const NotFoundRoute = NotFoundRouteImport.update({
+  id: '/not-found',
+  path: '/not-found',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
+const AuthedRouteRoute = AuthedRouteRouteImport.update({
+  id: '/_authed',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const publicRouteRoute = publicRouteRouteImport.update({
+  id: '/(public)',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const authRouteRoute = authRouteRouteImport.update({
+  id: '/(auth)',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const publicIndexRoute = publicIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => publicRouteRoute,
+} as any)
+const AuthedOnboardingRoute = AuthedOnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => AuthedRouteRoute,
+} as any)
+const AuthedDashboardRoute = AuthedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthedRouteRoute,
+} as any)
+const authSignupRoute = authSignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => authRouteRoute,
+} as any)
+const authLoginRoute = authLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => authRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/': typeof publicIndexRoute
+  '/not-found': typeof NotFoundRoute
+  '/login': typeof authLoginRoute
+  '/signup': typeof authSignupRoute
+  '/dashboard': typeof AuthedDashboardRoute
+  '/onboarding': typeof AuthedOnboardingRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/': typeof publicIndexRoute
+  '/not-found': typeof NotFoundRoute
+  '/login': typeof authLoginRoute
+  '/signup': typeof authSignupRoute
+  '/dashboard': typeof AuthedDashboardRoute
+  '/onboarding': typeof AuthedOnboardingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/(auth)': typeof authRouteRouteWithChildren
+  '/(public)': typeof publicRouteRouteWithChildren
+  '/_authed': typeof AuthedRouteRouteWithChildren
+  '/not-found': typeof NotFoundRoute
+  '/(auth)/login': typeof authLoginRoute
+  '/(auth)/signup': typeof authSignupRoute
+  '/_authed/dashboard': typeof AuthedDashboardRoute
+  '/_authed/onboarding': typeof AuthedOnboardingRoute
+  '/(public)/': typeof publicIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths:
+    | '/'
+    | '/not-found'
+    | '/login'
+    | '/signup'
+    | '/dashboard'
+    | '/onboarding'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '/' | '/not-found' | '/login' | '/signup' | '/dashboard' | '/onboarding'
+  id:
+    | '__root__'
+    | '/(auth)'
+    | '/(public)'
+    | '/_authed'
+    | '/not-found'
+    | '/(auth)/login'
+    | '/(auth)/signup'
+    | '/_authed/dashboard'
+    | '/_authed/onboarding'
+    | '/(public)/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
+  authRouteRoute: typeof authRouteRouteWithChildren
+  publicRouteRoute: typeof publicRouteRouteWithChildren
+  AuthedRouteRoute: typeof AuthedRouteRouteWithChildren
+  NotFoundRoute: typeof NotFoundRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/not-found': {
+      id: '/not-found'
+      path: '/not-found'
+      fullPath: '/not-found'
+      preLoaderRoute: typeof NotFoundRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/_authed': {
+      id: '/_authed'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(public)': {
+      id: '/(public)'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof publicRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(auth)': {
+      id: '/(auth)'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof authRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(public)/': {
+      id: '/(public)/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof publicIndexRouteImport
+      parentRoute: typeof publicRouteRoute
+    }
+    '/_authed/onboarding': {
+      id: '/_authed/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof AuthedOnboardingRouteImport
+      parentRoute: typeof AuthedRouteRoute
+    }
+    '/_authed/dashboard': {
+      id: '/_authed/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthedDashboardRouteImport
+      parentRoute: typeof AuthedRouteRoute
+    }
+    '/(auth)/signup': {
+      id: '/(auth)/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof authSignupRouteImport
+      parentRoute: typeof authRouteRoute
+    }
+    '/(auth)/login': {
+      id: '/(auth)/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof authLoginRouteImport
+      parentRoute: typeof authRouteRoute
     }
   }
 }
 
+interface authRouteRouteChildren {
+  authLoginRoute: typeof authLoginRoute
+  authSignupRoute: typeof authSignupRoute
+}
+
+const authRouteRouteChildren: authRouteRouteChildren = {
+  authLoginRoute: authLoginRoute,
+  authSignupRoute: authSignupRoute,
+}
+
+const authRouteRouteWithChildren = authRouteRoute._addFileChildren(
+  authRouteRouteChildren,
+)
+
+interface publicRouteRouteChildren {
+  publicIndexRoute: typeof publicIndexRoute
+}
+
+const publicRouteRouteChildren: publicRouteRouteChildren = {
+  publicIndexRoute: publicIndexRoute,
+}
+
+const publicRouteRouteWithChildren = publicRouteRoute._addFileChildren(
+  publicRouteRouteChildren,
+)
+
+interface AuthedRouteRouteChildren {
+  AuthedDashboardRoute: typeof AuthedDashboardRoute
+  AuthedOnboardingRoute: typeof AuthedOnboardingRoute
+}
+
+const AuthedRouteRouteChildren: AuthedRouteRouteChildren = {
+  AuthedDashboardRoute: AuthedDashboardRoute,
+  AuthedOnboardingRoute: AuthedOnboardingRoute,
+}
+
+const AuthedRouteRouteWithChildren = AuthedRouteRoute._addFileChildren(
+  AuthedRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
+  authRouteRoute: authRouteRouteWithChildren,
+  publicRouteRoute: publicRouteRouteWithChildren,
+  AuthedRouteRoute: AuthedRouteRouteWithChildren,
+  NotFoundRoute: NotFoundRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

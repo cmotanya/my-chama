@@ -23,8 +23,6 @@ export default function ThemeToggle() {
   const [ripple, setRipple] = useState(false);
   const animating = useRef(false);
 
-  type IconPhase = "enter" | "exit";
-
   useEffect(() => {
     applyThemeMode(mode);
   }, [mode]);
@@ -56,7 +54,7 @@ export default function ThemeToggle() {
       aria-label={`Switch to ${isLight ? "dark" : "light"} mode`}
       aria-pressed={!isLight}
       className={[
-        "relative size-12 overflow-hidden",
+        "relative size-12 cursor-pointer overflow-hidden",
         "flex items-center justify-center",
         "transition-all duration-300 ease-out",
         "hover:scale-105 focus-visible:outline-none active:scale-95 active:animate-spin",

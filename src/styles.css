@@ -1,5 +1,3 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap"); */
-/* @import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Sora:wght@100..800&display=swap"); */
 @import url("https://fonts.googleapis.com/css2?family=Bad+Script&family=Sora:wght@100..800&family=Unbounded:wght@200..900&display=swap");
 
 @import "tailwindcss";
@@ -36,7 +34,7 @@
   --primary: oklch(48% 0.04 60);
   --success: oklch(55% 0.1 155);
   --warning: oklch(68% 0.12 78);
-  --error: oklch(52% 0.12 20);
+  --error: oklch(52% 0.22 25);
 
   --radius: 24px;
 }
@@ -51,7 +49,7 @@
   --primary: oklch(62% 0.04 60);
   --success: oklch(66% 0.1 155);
   --warning: oklch(74% 0.13 80);
-  --error: oklch(62% 0.12 20);
+  --error: oklch(62% 0.15 20);
 }
 
 @layer base {
@@ -81,6 +79,7 @@
   color: var(--background);
   width: 100%;
   padding-block: 18px;
+  text-align: center;
   font-size: 16px;
   border-radius: var(--radius);
   cursor: pointer;
@@ -102,6 +101,7 @@
   border: 1px solid var(--border);
   padding-block: 16px;
   width: 100%;
+  text-align: center;
   border-radius: var(--radius);
   font-size: 16px;
   text-transform: uppercase;

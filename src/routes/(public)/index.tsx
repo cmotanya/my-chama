@@ -1,4 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+
+import {
+  ArrowDown01Icon,
+  CheckmarkBadge01Icon,
+  Tick02Icon,
+} from "hugeicons-react";
+import { useState } from "react";
 import {
   advantages,
   faqs,
@@ -8,16 +15,10 @@ import {
   stats,
   steps,
   testimonials,
-} from "../../data/landing";
-import { cn } from "../../lib/cn";
-import {
-  ArrowDown01Icon,
-  CheckmarkBadge01Icon,
-  Tick02Icon,
-} from "hugeicons-react";
-import { useState } from "react";
+} from "../../../data/landing";
+import { cn } from "../../../lib/cn";
 
-export const Route = createFileRoute("/")({ component: App });
+export const Route = createFileRoute("/(public)/")({ component: App });
 
 function App() {
   const [open, setOpen] = useState<number | null>(null);
@@ -54,12 +55,12 @@ function App() {
         </div>
 
         <div className="fu4 flex w-full flex-col gap-4 px-8 font-semibold tracking-widest">
-          <Link to="/">
-            <button className="btn-primary shadow-xl">Launch Test Demo</button>
+          <Link to="/login" className="btn-primary shadow-xl">
+            Launch Test Demo
           </Link>
 
-          <a href="#features">
-            <button className="btn-outline shadow-xl">Explore Features</button>
+          <a href="#features" className="btn-outline shadow-xl">
+            Explore Features
           </a>
         </div>
 
@@ -305,16 +306,19 @@ function App() {
                   ))}
                 </ul>
 
-                <button
-                  className={cn(
-                    "mt-5 w-full rounded-2xl border py-3 font-bold uppercase",
-                    plan.featured
-                      ? "bg-success text-background"
-                      : "bg-muted text-muted-foreground",
-                  )}
-                >
-                  {plan.cta}
-                </button>
+                <div className="mt-8 flex items-center text-center">
+                  <Link
+                    to="/login"
+                    className={cn(
+                      "w-full rounded-3xl py-3.5 font-bold uppercase",
+                      plan.featured
+                        ? "bg-success text-background"
+                        : "bg-muted text-muted-foreground border",
+                    )}
+                  >
+                    {plan.cta}
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -375,6 +379,7 @@ function App() {
           </div>
         </div>
 
+        {/* Ready to Start CTA */}
         <div className="space-y-4 p-5">
           <h2 className="text-primary text-center text-4xl font-bold">
             Ready to Start Your Chama?
@@ -385,15 +390,11 @@ function App() {
           </p>
 
           <div className="mt-8 flex flex-col gap-3">
-            <Link to="/">
-              <button className="btn-primary bg-primary font-semibold">
-                Get Started Today
-              </button>
+            <Link to="/login" className="btn-primary bg-primary font-semibold">
+              Get Started Today
             </Link>
-            <a href="#pricing">
-              <button className="btn-outline font-semibold shadow-xl">
-                View Pricing
-              </button>
+            <a href="#pricing" className="btn-outline font-semibold shadow-xl">
+              View Pricing
             </a>
           </div>
         </div>
