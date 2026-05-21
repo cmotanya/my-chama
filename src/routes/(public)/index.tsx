@@ -55,7 +55,7 @@ function App() {
         </div>
 
         <div className="fu4 flex w-full flex-col gap-4 px-8 font-semibold tracking-widest">
-          <Link to="/login" className="btn-primary shadow-xl">
+          <Link to="/login" preload="intent" className="btn-primary shadow-xl">
             Launch Test Demo
           </Link>
 
@@ -390,7 +390,11 @@ function App() {
           </p>
 
           <div className="mt-8 flex flex-col gap-3">
-            <Link to="/login" className="btn-primary bg-primary font-semibold">
+            <Link
+              to="/login"
+              preload="intent"
+              className="btn-primary bg-primary font-semibold"
+            >
               Get Started Today
             </Link>
             <a href="#pricing" className="btn-outline font-semibold shadow-xl">

@@ -53,7 +53,7 @@ function SignupPage() {
   });
 
   return (
-    <div className="my-16 space-y-10">
+    <div className="my-8 space-y-10">
       <h1 className="fu1 font-unbounded px-3 text-center text-3xl font-bold">
         Start Managing Your Chama in Minutes
       </h1>
@@ -146,6 +146,7 @@ function SignupPage() {
           </p>
           <Link
             to="/login"
+            preload="intent"
             className="font-unbounded text-primary flex cursor-pointer items-center gap-1 text-sm font-bold uppercase"
           >
             Sign In here <ArrowRight02Icon size={18} strokeWidth={2} />

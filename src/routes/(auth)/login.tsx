@@ -111,6 +111,7 @@ function LoginPage() {
           </p>
           <Link
             to="/signup"
+            preload="intent"
             className="font-unbounded text-primary flex items-center gap-1 text-sm font-bold uppercase"
           >
             Create A Workspace <ArrowRight02Icon size={18} strokeWidth={2} />
