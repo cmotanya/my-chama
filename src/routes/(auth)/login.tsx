@@ -56,7 +56,7 @@ function LoginPage() {
           handleSubmit();
         }}
         noValidate
-        className="fu2 space-y-6 px-5"
+        className="fu2 space-y-6 px-8"
       >
         <Field
           name="phone"
@@ -88,18 +88,20 @@ function LoginPage() {
         <Subscribe
           selector={(state) => [state.canSubmit, state.isSubmitting]}
           children={([canSubmit, isSubmitting]) => (
-            <button
-              type="submit"
-              disabled={!canSubmit}
-              className={cn(
-                "bg-foreground fu3 text-background w-full cursor-pointer rounded-3xl py-3.5 font-medium uppercase",
-                !canSubmit &&
-                  isSubmitting &&
-                  "bg-muted-foreground/60 pointer-events-none transition-all duration-200 ease-in-out",
-              )}
-            >
-              {isSubmitting ? "Signing in..." : "Sign In"}
-            </button>
+            <div className="flex w-full justify-end">
+              <button
+                type="submit"
+                disabled={!canSubmit}
+                className={cn(
+                  "bg-foreground fu3 text-background w-fit cursor-pointer rounded-3xl px-5 py-2.5 font-medium",
+                  !canSubmit &&
+                    isSubmitting &&
+                    "bg-muted-foreground/60 pointer-events-none transition-all duration-200 ease-in-out",
+                )}
+              >
+                {isSubmitting ? "Signing in..." : "Sign In"}
+              </button>
+            </div>
           )}
         />
       </form>

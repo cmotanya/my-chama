@@ -1,4 +1,5 @@
-import { logoutFn } from "#/server/logout";
+// import { logoutFn } from "#/server/logout";
+import Header from "#/components/dashboard/header/header";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authed/dashboard")({
@@ -6,37 +7,40 @@ export const Route = createFileRoute("/_authed/dashboard")({
 });
 
 function DashboardPage() {
-  const router = useRouter();
+  // const router = useRouter();
   const { user } = Route.useRouteContext();
 
-  const handleLogout = async () => {
-    await logoutFn();
-    await router.invalidate({ sync: true });
-    router.navigate({ to: "/login" });
-  };
+  // const handleLogout = async () => {
+  //   await logoutFn();
+  //   await router.invalidate({ sync: true });
+  //   router.navigate({ to: "/login" });
+  // };
 
   const hour = new Date().getHours();
   const greeting =
     hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
   return (
-    <section className="min-h-screen py-10">
+    <section className="min-h-screen">
+      <Header />
+
       <div className="flex flex-col space-y-6 px-4">
-        <div className="flex justify-end">
+        {/* <div className="flex justify-end">
           <button
             onClick={handleLogout}
             className="rounded-2xl border p-2 text-[10px] font-bold"
           >
             Sign out
           </button>
-        </div>
+        </div> */}
 
-        <div className="space-y-1">
-          <p className="font-bad_script text-primary text-lg font-bold">
-            {greeting}, {user.name}.
-          </p>
-          <h1 className="font-unbound text-center text-2xl font-bold tracking-tighter">
+        <div className="space-y-5">
+          <h1 className="font-unbound text-primary text-center text-4xl font-bold">
             Welcome to Your Workspace
           </h1>
+
+          <p className="text-sm font-medium">
+            {greeting}, {user.name}.
+          </p>
         </div>
       </div>
     </section>
