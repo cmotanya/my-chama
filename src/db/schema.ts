@@ -41,11 +41,11 @@ export const chamasTable = pgTable("chamas", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   name: varchar({ length: 255 }).notNull(),
   memberCount: integer("member_count").notNull(),
-  contributionAmount: integer("contribution_count").notNull(),
+  contributionAmount: integer("contribution_amount").notNull(),
   contributionFrequency: contributionFrequencyEnum("contribution_frequency")
     .notNull()
     .default("monthly"),
-  ownerId: integer("owner")
+  ownerId: integer()
     .notNull()
     .references(() => usersTable.id),
   createdAt: timestamp("created_at").defaultNow(),

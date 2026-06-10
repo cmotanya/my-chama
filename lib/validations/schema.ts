@@ -75,3 +75,9 @@ export const onboardingSchema = z.object({
   contributionFrequency: z.enum(["weekly", "monthly"]),
   groupType: z.enum(["merry-go-round", "lending"]),
 });
+
+// ============UPDATE PROFILE=================//
+export const updateProfileSchema = z.object({
+  name: nameField,
+  phone: phoneField,
+});

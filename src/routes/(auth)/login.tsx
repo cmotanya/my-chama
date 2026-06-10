@@ -4,9 +4,9 @@ import { loginSchema } from "../../../lib/validations/schema";
 import TextField from "#/components/text-field";
 import { ArrowRight02Icon } from "hugeicons-react";
 import { useState } from "react";
-import { LoginFn } from "#/server/login";
 import toast from "react-hot-toast";
 import { cn } from "../../../lib/cn";
+import { loginFn } from "#/server/login";
 
 export const Route = createFileRoute("/(auth)/login")({
   component: LoginPage,
@@ -20,7 +20,7 @@ function LoginPage() {
   const { Field, handleSubmit, Subscribe } = useForm({
     defaultValues: defaultUser,
     onSubmit: async ({ value }) => {
-      const result = await LoginFn({ data: value });
+      const result = await loginFn({ data: value });
 
       if (result.error) {
         toast.error(result.error);
@@ -88,20 +88,18 @@ function LoginPage() {
         <Subscribe
           selector={(state) => [state.canSubmit, state.isSubmitting]}
           children={([canSubmit, isSubmitting]) => (
-            <div className="flex w-full justify-end">
-              <button
-                type="submit"
-                disabled={!canSubmit}
-                className={cn(
-                  "bg-foreground fu3 text-background w-fit cursor-pointer rounded-3xl px-5 py-2.5 font-medium",
-                  !canSubmit &&
-                    isSubmitting &&
-                    "bg-muted-foreground/60 pointer-events-none transition-all duration-200 ease-in-out",
-                )}
-              >
-                {isSubmitting ? "Signing in..." : "Sign In"}
-              </button>
-            </div>
+            <button
+              type="submit"
+              disabled={!canSubmit}
+              className={cn(
+                "bg-foreground fu3 text-background w-full cursor-pointer rounded-3xl py-3.5 font-medium",
+                !canSubmit &&
+                  isSubmitting &&
+                  "bg-muted-foreground/60 pointer-events-none transition-all duration-200 ease-in-out",
+              )}
+            >
+              {isSubmitting ? "Signing in..." : "Sign In"}
+            </button>
           )}
         />
       </form>

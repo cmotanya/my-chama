@@ -6,7 +6,7 @@ import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { useAppSession } from "../../lib/session";
 
-export const LoginFn = createServerFn({ method: "POST" })
+export const loginFn = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => loginSchema.parse(data))
   .handler(async ({ data }) => {
     const users = await db

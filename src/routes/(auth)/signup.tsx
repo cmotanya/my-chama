@@ -127,7 +127,7 @@ function SignupPage() {
               type="submit"
               disabled={!canSubmit || isSubmitting}
               className={cn(
-                "bg-foreground fu3 text-background w-full cursor-pointer rounded-3xl py-4 font-medium uppercase",
+                "bg-foreground fu3 text-background w-full cursor-pointer rounded-3xl py-3.5 font-medium uppercase",
                 !canSubmit &&
                   isSubmitting &&
                   "bg-muted-foreground/60 pointer-events-none transition-all duration-200 ease-in-out",
