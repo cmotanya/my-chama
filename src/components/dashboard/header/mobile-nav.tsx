@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useRef, useState } from "react";
 import HamburgerMenu from "./hamburger";
 import { cn } from "../../../../lib/cn";
@@ -56,9 +54,13 @@ const MobileNavigation = () => {
             isOpen ? "translate-x-0" : "-translate-x-full",
           )}
         >
-          <div className="text-primary font-unbounded flex items-center gap-2 px-5 text-sm font-medium uppercase">
-            <p className="">Active Group:</p>
-            <span className="">{user.name}</span>
+          <div className="text-primary flex items-center gap-2 px-5 text-sm font-medium uppercase">
+            <span className="text-muted-foreground text-[10px] tracking-widest">
+              Active Group:
+            </span>
+            <h2 className="font-unbounded text-lg font-bold tracking-tighter">
+              {user.chamaName ?? "No active group"}
+            </h2>
           </div>
 
           <ul className="flex flex-col">
@@ -68,7 +70,12 @@ const MobileNavigation = () => {
                 <li key={link.to} className="w-full">
                   <Link
                     to={link.to}
+                    onClick={closeMenu}
                     className="flex w-full items-center gap-4 p-4"
+                    activeProps={{
+                      className:
+                        "bg-border text-muted-foreground border border-muted-foreground/30 border-r-0 font-medium",
+                    }}
                   >
                     <Icon strokeWidth={2} />
                     <span className="font-unbounded">{link.label}</span>

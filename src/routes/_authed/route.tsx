@@ -1,4 +1,4 @@
-import { getCurrentUserFn } from "#/server/current-user";
+import { getCurrentUserFn } from "#/server/get-current-user";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authed")({

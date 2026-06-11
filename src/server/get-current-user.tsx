@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { useAppSession } from "../../lib/session";
 import { db } from "#/db";
-import { usersTable } from "#/db/schema";
+import { chamasTable, usersTable } from "#/db/schema";
 import { eq } from "drizzle-orm";
 
 export const getCurrentUserFn = createServerFn({ method: "GET" }).handler(
@@ -20,9 +20,11 @@ export const getCurrentUserFn = createServerFn({ method: "GET" }).handler(
         phone: usersTable.phone,
         role: usersTable.role,
         chamaId: usersTable.chamaId,
+        chamaName: chamasTable.name,
         createdAt: usersTable.createdAt,
       })
       .from(usersTable)
+      .leftJoin(chamasTable, eq(chamasTable.id, usersTable.chamaId))
       .where(eq(usersTable.id, Number(userId)))
       .limit(1);
 
