@@ -15,10 +15,14 @@ function applyThemeMode(mode: ThemeMode) {
   document.documentElement.classList.add(mode);
   document.documentElement.setAttribute("data-theme", mode);
   document.documentElement.style.colorScheme = mode;
+
+  if (typeof window !== "undefined") {
+    localStorage.setItem("theme", mode);
+  }
 }
 
 export default function ThemeToggle() {
-  const [mode, setMode] = useState<ThemeMode>(getInitialMode);
+  const [mode, setMode] = useState<ThemeMode>("light");
   const [mounted, setMounted] = useState(false);
   const [phase, setPhase] = useState<IconPhase>("enter");
   const [ripple, setRipple] = useState(false);
@@ -74,10 +78,7 @@ export default function ThemeToggle() {
       {ripple && (
         <span
           aria-hidden="true"
-          className={[
-            "absolute inset-0",
-            "animate-[theme-ripple_500ms_ease-out_forwards]",
-          ].join(" ")}
+          className={["absolute inset-0", "animate-theme-ripple"].join(" ")}
         />
       )}
 
@@ -87,9 +88,7 @@ export default function ThemeToggle() {
         suppressHydrationWarning
         className={[
           "absolute flex items-center justify-center",
-          phase === "enter"
-            ? "animate-[theme-icon-enter_320ms_cubic-bezier(0.34,1.4,0.64,1)_forwards]"
-            : "animate-[theme-icon-exit_200ms_cubic-bezier(0.4,0,1,1)_forwards]",
+          phase === "enter" ? "animate-theme-enter" : "animate-theme-exit",
           mounted ? "opacity-100" : "opacity-0",
         ].join(" ")}
       >

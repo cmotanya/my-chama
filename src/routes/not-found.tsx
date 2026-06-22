@@ -4,10 +4,10 @@ import { ArrowLeft02Icon, Unlink04Icon } from "hugeicons-react";
 import { THEME_INIT_SCRIPT } from "../../lib/utils/theme-script";
 
 export const Route = createFileRoute("/not-found")({
-  component: NotFound,
+  component: notFound,
 });
 
-export function NotFound() {
+function notFound() {
   return (
     <section className="h-dvh w-full">
       <Header />

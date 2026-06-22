@@ -74,107 +74,156 @@
   }
 }
 
-.btn-primary {
-  background: var(--foreground);
-  color: var(--background);
-  width: 100%;
-  padding-block: 16px;
-  text-align: center;
-  font-size: 16px;
-  border-radius: var(--radius);
-  cursor: pointer;
-  text-transform: uppercase;
-  transition:
-    opacity 0.18s,
-    transform 0.15s;
+@layer utilities {
+  /* primary button style */
+  .btn-primary {
+    background: var(--foreground);
+    color: var(--background);
+    width: 100%;
+    padding-block: 16px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    text-transform: uppercase;
+    transition:
+      opacity 0.18s,
+      transform 0.15s;
 
-  &:hover {
-    opacity: 0.88;
-    transform: translateY(-1px);
+    &:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+    &:active {
+      transform: scale(0.98);
+    }
   }
-  &:active {
-    transform: scale(0.98);
-  }
-}
 
-.btn-outline {
-  border: 1px solid var(--border);
-  padding-block: 16px;
-  width: 100%;
-  text-align: center;
-  border-radius: var(--radius);
-  font-size: 16px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition:
-    border-color 0.18s,
-    color 0.18s,
-    transform 0.15s;
+  /* button outline style */
+  .btn-outline {
+    border: 1px solid var(--border);
+    padding-block: 16px;
+    width: 100%;
+    text-align: center;
+    border-radius: var(--radius);
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+      border-color 0.18s,
+      color 0.18s,
+      transform 0.15s;
 
-  &:hover {
-    border-color: var(--primary);
-    color: var(--foreground);
+    &:hover {
+      border-color: var(--primary);
+      color: var(--foreground);
+    }
+    &:active {
+      transform: scale(0.98);
+    }
   }
-  &:active {
-    transform: scale(0.98);
-  }
-}
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .fu1 {
+    animation: fadeUp 0.35s 0.05s ease both;
   }
-}
-.fu1 {
-  animation: fadeUp 0.35s 0.05s ease both;
-}
-.fu2 {
-  animation: fadeUp 0.35s 0.13s ease both;
-}
-.fu3 {
-  animation: fadeUp 0.35s 0.21s ease both;
-}
-.fu4 {
-  animation: fadeUp 0.35s 0.29s ease both;
-}
-.fu5 {
-  animation: fadeUp 0.35s 0.37s ease both;
-}
-.fu6 {
-  animation: fadeUp 0.35s 0.45s ease both;
-}
-.fu7 {
-  animation: fadeUp 0.35s 0.53s ease both;
-}
-.fu8 {
-  animation: fadeUp 0.35s 0.61s ease both;
-}
-.fu9 {
-  animation: fadeUp 0.35s 0.69s ease both;
-}
-.fu10 {
-  animation: fadeUp 0.35s 0.77s ease both;
-}
-.fu11 {
-  animation: fadeUp 0.35s 0.85s ease both;
-}
-.fu12 {
-  animation: fadeUp 0.35s 0.93s ease both;
-}
-.fu13 {
-  animation: fadeUp 0.35s 1.01s ease both;
-}
-.fu14 {
-  animation: fadeUp 0.35s 1.09s ease both;
-}
-.fu15 {
-  animation: fadeUp 0.35s 1.17s ease both;
-}
-.fu16 {
-  animation: fadeUp 0.35s 1.25s ease both;
+  .fu2 {
+    animation: fadeUp 0.35s 0.13s ease both;
+  }
+  .fu3 {
+    animation: fadeUp 0.35s 0.21s ease both;
+  }
+  .fu4 {
+    animation: fadeUp 0.35s 0.29s ease both;
+  }
+  .fu5 {
+    animation: fadeUp 0.35s 0.37s ease both;
+  }
+  .fu6 {
+    animation: fadeUp 0.35s 0.45s ease both;
+  }
+  .fu7 {
+    animation: fadeUp 0.35s 0.53s ease both;
+  }
+  .fu8 {
+    animation: fadeUp 0.35s 0.61s ease both;
+  }
+  .fu9 {
+    animation: fadeUp 0.35s 0.69s ease both;
+  }
+  .fu10 {
+    animation: fadeUp 0.35s 0.77s ease both;
+  }
+  .fu11 {
+    animation: fadeUp 0.35s 0.85s ease both;
+  }
+  .fu12 {
+    animation: fadeUp 0.35s 0.93s ease both;
+  }
+  .fu13 {
+    animation: fadeUp 0.35s 1.01s ease both;
+  }
+  .fu14 {
+    animation: fadeUp 0.35s 1.09s ease both;
+  }
+  .fu15 {
+    animation: fadeUp 0.35s 1.17s ease both;
+  }
+  .fu16 {
+    animation: fadeUp 0.35s 1.25s ease both;
+  }
+
+  /* theme style animation */
+  @keyframes theme-ripple {
+    0% {
+      transform: scale(0);
+      opacity: 0.4;
+    }
+    100% {
+      transform: scale(2.5);
+      opacity: 0;
+      background-color: transparent;
+    }
+  }
+
+  @keyframes theme-icon-enter {
+    0% {
+      transform: scale(0) rotate(-45deg);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+  }
+
+  @keyframes theme-icon-exit {
+    0% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.6) rotate(45deg);
+      opacity: 0;
+    }
+  }
+
+  .animate-theme-ripple {
+    animation: theme-ripple 500ms ease-out forwards;
+  }
+  .animate-theme-enter {
+    animation: theme-icon-enter 320ms cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
+  }
+  .animate-theme-exit {
+    animation: theme-icon-exit 200ms cubic-bezier(0.4, 0, 1, 1) forwards;
+  }
 }
