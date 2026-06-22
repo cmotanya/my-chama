@@ -1,18 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import HamburgerMenu from "./hamburger";
-import { cn } from "../../../../lib/cn";
+import { cn } from "../../../../lib/utils/cn";
 import { navigation_links } from "../../../../data/navigation-links";
 import { Link, useRouteContext, useRouter } from "@tanstack/react-router";
-import { Logout03Icon } from "hugeicons-react";
+import { Logout03Icon, UserCircle02Icon } from "hugeicons-react";
 import { logoutFn } from "#/server/logout";
+import ThemeToggle from "#/components/theme/theme-toggle";
 
 const MobileNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navRef = useRef(null);
   const router = useRouter();
 
   const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
 
   const { user } = useRouteContext({ from: "/_authed" });
 
@@ -33,11 +32,7 @@ const MobileNavigation = () => {
   };
 
   return (
-    <nav
-      ref={navRef}
-      aria-label="mobile navigation"
-      className="relative md:hidden"
-    >
+    <nav aria-label="mobile navigation" className="relative md:hidden">
       <HamburgerMenu onClick={toggleMenu} isOpen={isOpen} />
 
       <div
@@ -50,41 +45,82 @@ const MobileNavigation = () => {
         <div
           onClick={(e) => e.stopPropagation()}
           className={cn(
-            "bg-muted fixed inset-0 w-3/4 space-y-10 border-r py-10 shadow-xl transition-transform duration-300 ease-in-out",
+            "bg-muted fixed inset-0 flex w-3/4 flex-col overflow-hidden border-r py-2 shadow-xl transition-transform duration-300 ease-in-out",
             isOpen ? "translate-x-0" : "-translate-x-full",
           )}
         >
-          <div className="text-primary flex items-center gap-2 px-5 text-sm font-medium uppercase">
-            <span className="text-muted-foreground text-[10px] tracking-widest">
+          {/* theme and close button */}
+          <div className="flex items-center justify-between px-3">
+            <ThemeToggle />
+
+            <button onClick={() => setIsOpen(false)}>
+              {" "}
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path
+                  d="M4 4L14 14M14 4L4 14"
+                  stroke="var(--error)"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+          </div>
+
+          {/* chama name */}
+          <div className="border-b px-5 py-5 text-sm font-medium uppercase">
+            <p className="text-muted-foreground text-[10px] tracking-widest">
               Active Group:
-            </span>
-            <h2 className="font-unbounded text-lg font-bold tracking-tighter">
+            </p>
+            <h2 className="text-primary font-bold tracking-widest">
               {user.chamaName ?? "No active group"}
             </h2>
           </div>
 
-          <ul className="flex flex-col">
+          {/* link navigation */}
+          <ul className="flex-1 p-2">
             {navigation_links.map((link) => {
               const Icon = link.icon;
               return (
                 <li key={link.to} className="w-full">
                   <Link
                     to={link.to}
-                    onClick={closeMenu}
-                    className="flex w-full items-center gap-4 p-4"
+                    onClick={() => setIsOpen(false)}
+                    className="mb-0.5 flex items-center gap-3 rounded-2xl px-3 py-[11px] text-[14px] transition-colors"
                     activeProps={{
                       className:
-                        "bg-border text-muted-foreground border border-muted-foreground/30 border-r-0 font-medium",
+                        "text-muted-foreground border-muted-foreground/20 bg-muted-foreground/15 border border-r-0 font-medium",
                     }}
                   >
                     <Icon strokeWidth={2} />
-                    <span className="font-unbounded">{link.label}</span>
+                    <span className="">{link.label}</span>
                   </Link>
                 </li>
               );
             })}
           </ul>
-          <div className="px-5">
+
+          {/* user profile identity */}
+          <div className="space-y-4 border-t px-2 pt-4 pb-2">
+            <div className="bg-muted item-center mt-auto flex rounded-3xl">
+              <div className="flex w-full shrink-0 items-center justify-start gap-4 p-3">
+                <UserCircle02Icon
+                  color="var(--muted-foreground)"
+                  fill="var(--border)"
+                  strokeWidth={2}
+                />
+                <div className="text-muted-foreground flex min-w-0 flex-col text-xs font-semibold">
+                  <p className="tracking-widest uppercase">{user.name}</p>
+                  <p>
+                    role:{" "}
+                    <span className="tracking-widest uppercase">
+                      {user.role}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* sign out button */}
             <button
               onClick={handleSignOut}
               type="button"

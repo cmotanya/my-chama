@@ -16,6 +16,7 @@ import { Route as authRouteRouteImport } from './routes/(auth)/route'
 import { Route as publicIndexRouteImport } from './routes/(public)/index'
 import { Route as AuthedProfileRouteImport } from './routes/_authed/profile'
 import { Route as AuthedOnboardingRouteImport } from './routes/_authed/onboarding'
+import { Route as AuthedMembersRouteImport } from './routes/_authed/members'
 import { Route as AuthedDashboardRouteImport } from './routes/_authed/dashboard'
 import { Route as authSignupRouteImport } from './routes/(auth)/signup'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
@@ -52,6 +53,11 @@ const AuthedOnboardingRoute = AuthedOnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => AuthedRouteRoute,
 } as any)
+const AuthedMembersRoute = AuthedMembersRouteImport.update({
+  id: '/members',
+  path: '/members',
+  getParentRoute: () => AuthedRouteRoute,
+} as any)
 const AuthedDashboardRoute = AuthedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
   '/dashboard': typeof AuthedDashboardRoute
+  '/members': typeof AuthedMembersRoute
   '/onboarding': typeof AuthedOnboardingRoute
   '/profile': typeof AuthedProfileRoute
 }
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
   '/dashboard': typeof AuthedDashboardRoute
+  '/members': typeof AuthedMembersRoute
   '/onboarding': typeof AuthedOnboardingRoute
   '/profile': typeof AuthedProfileRoute
 }
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/signup': typeof authSignupRoute
   '/_authed/dashboard': typeof AuthedDashboardRoute
+  '/_authed/members': typeof AuthedMembersRoute
   '/_authed/onboarding': typeof AuthedOnboardingRoute
   '/_authed/profile': typeof AuthedProfileRoute
   '/(public)/': typeof publicIndexRoute
@@ -107,6 +116,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/dashboard'
+    | '/members'
     | '/onboarding'
     | '/profile'
   fileRoutesByTo: FileRoutesByTo
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/dashboard'
+    | '/members'
     | '/onboarding'
     | '/profile'
   id:
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/(auth)/login'
     | '/(auth)/signup'
     | '/_authed/dashboard'
+    | '/_authed/members'
     | '/_authed/onboarding'
     | '/_authed/profile'
     | '/(public)/'
@@ -190,6 +202,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedOnboardingRouteImport
       parentRoute: typeof AuthedRouteRoute
     }
+    '/_authed/members': {
+      id: '/_authed/members'
+      path: '/members'
+      fullPath: '/members'
+      preLoaderRoute: typeof AuthedMembersRouteImport
+      parentRoute: typeof AuthedRouteRoute
+    }
     '/_authed/dashboard': {
       id: '/_authed/dashboard'
       path: '/dashboard'
@@ -242,12 +261,14 @@ const publicRouteRouteWithChildren = publicRouteRoute._addFileChildren(
 
 interface AuthedRouteRouteChildren {
   AuthedDashboardRoute: typeof AuthedDashboardRoute
+  AuthedMembersRoute: typeof AuthedMembersRoute
   AuthedOnboardingRoute: typeof AuthedOnboardingRoute
   AuthedProfileRoute: typeof AuthedProfileRoute
 }
 
 const AuthedRouteRouteChildren: AuthedRouteRouteChildren = {
   AuthedDashboardRoute: AuthedDashboardRoute,
+  AuthedMembersRoute: AuthedMembersRoute,
   AuthedOnboardingRoute: AuthedOnboardingRoute,
   AuthedProfileRoute: AuthedProfileRoute,
 }

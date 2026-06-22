@@ -29,6 +29,48 @@
       "when": 1778963239618,
       "tag": "0003_spotty_stellaris",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1781455286135,
+      "tag": "0004_curved_liz_osborn",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1781456511375,
+      "tag": "0005_talented_selene",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1781461233221,
+      "tag": "0006_flippant_luckman",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1781462322809,
+      "tag": "0007_purple_lila_cheney",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1781936049857,
+      "tag": "0008_lonely_next_avengers",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1782104354591,
+      "tag": "0009_steep_psylocke",
+      "breakpoints": true
     }
   ]
 }

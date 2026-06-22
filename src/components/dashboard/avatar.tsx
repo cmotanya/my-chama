@@ -2,7 +2,7 @@ import { logoutFn } from "#/server/logout";
 import { Link, useRouter, useRouterState } from "@tanstack/react-router";
 import { Logout03Icon, UserEdit01Icon } from "hugeicons-react";
 import { useEffect, useRef, useState } from "react";
-import { cn } from "../../../lib/cn";
+import { cn } from "../../../lib/utils/cn";
 
 interface AvatarProps {
   seed: string;

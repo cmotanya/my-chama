@@ -1,9 +1,8 @@
-import Header from "#/components/header";
 import { revalidateLogic, useForm } from "@tanstack/react-form";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { onboardingSchema } from "../../../lib/validations/schema";
 import TextField from "#/components/text-field";
-import { cn } from "../../../lib/cn";
+import { cn } from "../../../lib/utils/cn";
 import { groupType } from "../../../data/group-type";
 import { Tick04Icon } from "hugeicons-react";
 import { chamaFn } from "#/server/chama";
@@ -17,10 +16,10 @@ function Onboarding() {
   const router = useRouter();
   const defaultUser = {
     name: "",
-    memberCount: 20,
-    contributionAmount: 1000,
+    memberCount: 0,
+    contributionAmount: 0,
     contributionFrequency: "weekly" as "weekly" | "monthly",
-    groupType: "merry-go-round" as "merry-go-round" | "lending",
+    groupType: "merry_go_round" as "merry_go_round" | "lending",
   };
 
   const { Field, handleSubmit, Subscribe } = useForm({
@@ -38,17 +37,20 @@ function Onboarding() {
     },
     validationLogic: revalidateLogic(),
     validators: { onDynamic: onboardingSchema },
+
     onSubmitInvalid() {
-      const invalidInput = document.querySelector(
+      const invalidInput = document.querySelector<HTMLInputElement>(
         '[aria-invalid="true"]',
-      ) as HTMLInputElement;
-      invalidInput.focus();
+      );
+
+      if (invalidInput) {
+        invalidInput.focus();
+      }
     },
   });
+
   return (
     <section className="mb-16">
-      <Header />
-
       <h1 className="fu1 font-unbounded px-10 pt-10 pb-8 text-center text-3xl font-bold">
         Setup Your Workspace
       </h1>
@@ -69,36 +71,40 @@ function Onboarding() {
               label="Chama Name"
               field={field}
               type="text"
-              placeholder="Your Chama Name"
+              placeholder="e.g. Umoja Mwanzo"
             />
           )}
         />
 
-        <Field
-          name="memberCount"
-          children={(field) => (
-            <TextField
-              label="Target Member Count"
-              field={field}
-              type="number"
-              inputMode="numeric"
-              placeholder="Enter Member Count"
-            />
-          )}
-        />
+        <div className="flex shrink-0 gap-3">
+          <Field
+            name="memberCount"
+            children={(field) => (
+              <TextField
+                label="Target Member Count"
+                field={field}
+                type="number"
+                inputMode="numeric"
+                numeric
+                placeholder="e.g. 20"
+              />
+            )}
+          />
 
-        <Field
-          name="contributionAmount"
-          children={(field) => (
-            <TextField
-              label="Contribution Amount"
-              field={field}
-              type="number"
-              inputMode="numeric"
-              placeholder="Enter Amount"
-            />
-          )}
-        />
+          <Field
+            name="contributionAmount"
+            children={(field) => (
+              <TextField
+                label="Contribution Amount (KES)"
+                field={field}
+                type="number"
+                inputMode="numeric"
+                numeric
+                placeholder="Enter Amount"
+              />
+            )}
+          />
+        </div>
 
         <Field
           name="contributionFrequency"
@@ -148,10 +154,15 @@ function Onboarding() {
                       key={label}
                       onClick={() =>
                         field.handleChange(
-                          value as "merry-go-round" | "lending",
+                          value as "merry_go_round" | "lending",
                         )
                       }
-                      className="bg-muted relative flex flex-col items-center justify-center gap-3 rounded-2xl border p-5"
+                      className={cn(
+                        "bg-muted relative flex flex-col items-center justify-center gap-3 rounded-2xl border-2 p-5 transition-all duration-200 ease-in-out",
+                        field.state.value === value
+                          ? `${border} scale-[102%] shadow-md`
+                          : "border-border",
+                      )}
                     >
                       <span
                         className={cn("rounded-lg border-2 p-1", bg, border)}
@@ -166,7 +177,7 @@ function Onboarding() {
                       >
                         {field.state.value === value && (
                           <span className="absolute top-2 right-2">
-                            <Tick04Icon strokeWidth={2} />
+                            <Tick04Icon strokeWidth={2} fill={color} />
                           </span>
                         )}
                         {label}
@@ -183,6 +194,60 @@ function Onboarding() {
         />
 
         <Subscribe
+          selector={(state) => [
+            state.values.memberCount,
+            state.values.contributionAmount,
+          ]}
+          children={([memberCount, contributionAmount]) => {
+            const projectedPool = memberCount * contributionAmount;
+
+            return (
+              <div
+                className={cn(
+                  "bg-muted space-y-3 rounded-3xl border p-4",
+                  memberCount && contributionAmount
+                    ? "border-success"
+                    : "border-error",
+                )}
+              >
+                <p className="text-muted-foreground font-bold uppercase">
+                  Projected pool per cycle
+                </p>
+
+                <div className="space-y-2">
+                  <p
+                    className={cn(
+                      "font-unbounded font-semibold",
+                      memberCount && contributionAmount
+                        ? "text-success"
+                        : "text-muted-foreground/50",
+                    )}
+                  >
+                    KES{" "}
+                    <span className="tracking-widest">
+                      {projectedPool.toLocaleString()}
+                    </span>
+                  </p>
+
+                  <p
+                    className={cn(
+                      "text-[10px] font-medium tracking-wider transition-all duration-200 ease-in-out",
+                      memberCount && contributionAmount
+                        ? "text-success"
+                        : "text-error",
+                    )}
+                  >
+                    {memberCount && contributionAmount
+                      ? `${memberCount} members × KES ${contributionAmount.toLocaleString()}`
+                      : "Enter member count and amount to calculate"}
+                  </p>
+                </div>
+              </div>
+            );
+          }}
+        />
+
+        <Subscribe
           selector={(state) => [state.canSubmit, state.isSubmitting]}
           children={([canSubmit, isSubmitting]) => (
             <button
@@ -190,8 +255,7 @@ function Onboarding() {
               disabled={!canSubmit || isSubmitting}
               className={cn(
                 "bg-foreground fu3 text-background w-full cursor-pointer rounded-3xl py-3.5 font-medium uppercase",
-                !canSubmit &&
-                  isSubmitting &&
+                (!canSubmit || isSubmitting) &&
                   "bg-muted-foreground/60 pointer-events-none transition-all duration-200 ease-in-out",
               )}
             >

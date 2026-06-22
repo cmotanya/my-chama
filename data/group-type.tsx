@@ -2,7 +2,7 @@ import { MoneySavingJarIcon, Payment02Icon } from "hugeicons-react";
 
 export const groupType = [
   {
-    value: "merry-go-round",
+    value: "merry_go_round",
     label: "Merry-Go-Round",
     description: "Contributions rotate each cycle",
     icon: MoneySavingJarIcon,

@@ -5,7 +5,7 @@ import TextField from "#/components/text-field";
 import { ArrowRight02Icon } from "hugeicons-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { cn } from "../../../lib/cn";
+import { cn } from "../../../lib/utils/cn";
 import { loginFn } from "#/server/login";
 
 export const Route = createFileRoute("/(auth)/login")({
@@ -93,8 +93,7 @@ function LoginPage() {
               disabled={!canSubmit}
               className={cn(
                 "bg-foreground fu3 text-background w-full cursor-pointer rounded-3xl py-3.5 font-medium",
-                !canSubmit &&
-                  isSubmitting &&
+                (!canSubmit || isSubmitting) &&
                   "bg-muted-foreground/60 pointer-events-none transition-all duration-200 ease-in-out",
               )}
             >

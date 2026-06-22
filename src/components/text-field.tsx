@@ -1,6 +1,6 @@
 import type { AnyFieldApi } from "@tanstack/react-form";
 import type { ComponentProps } from "react";
-import { cn } from "../../lib/cn";
+import { cn } from "../../lib/utils/cn";
 
 interface TextFieldProps {
   field: AnyFieldApi;
@@ -10,6 +10,7 @@ interface TextFieldProps {
   inputMode?: ComponentProps<"input">["inputMode"];
   disabled?: boolean;
   showPassword?: boolean;
+  numeric?: boolean;
   setShowPassword?: (value: boolean) => void;
 }
 
@@ -21,6 +22,7 @@ export default function TextField({
   inputMode,
   disabled = false,
   showPassword,
+  numeric = false,
   setShowPassword,
 }: TextFieldProps) {
   const errors = (
@@ -55,8 +57,12 @@ export default function TextField({
           name={field.name}
           type={type === "password" && showPassword ? "text" : type}
           inputMode={inputMode}
-          value={field.state.value}
-          onChange={(e) => field.handleChange(e.target.value)}
+          value={numeric && field.state.value === 0 ? "" : field.state.value}
+          onChange={(e) =>
+            field.handleChange(
+              numeric ? Number(e.target.value) : e.target.value,
+            )
+          }
           placeholder={placeholder}
           disabled={disabled}
           onBlur={field.handleBlur}

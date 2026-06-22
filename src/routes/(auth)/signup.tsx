@@ -2,7 +2,7 @@ import { revalidateLogic, useForm } from "@tanstack/react-form";
 import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { registerSchema } from "../../../lib/validations/schema";
 import TextField from "#/components/text-field";
-import { cn } from "../../../lib/cn";
+import { cn } from "../../../lib/utils/cn";
 import { ArrowRight02Icon } from "hugeicons-react";
 import { useState } from "react";
 import { registerFn } from "#/server/register";
@@ -128,8 +128,7 @@ function SignupPage() {
               disabled={!canSubmit || isSubmitting}
               className={cn(
                 "bg-foreground fu3 text-background w-full cursor-pointer rounded-3xl py-3.5 font-medium uppercase",
-                !canSubmit &&
-                  isSubmitting &&
+                (!canSubmit || isSubmitting) &&
                   "bg-muted-foreground/60 pointer-events-none transition-all duration-200 ease-in-out",
               )}
             >

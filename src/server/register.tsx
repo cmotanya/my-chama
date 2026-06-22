@@ -5,6 +5,7 @@ import { usersTable } from "#/db/schema";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { useAppSession } from "../../lib/session";
+import { capitalizeText } from "../../lib/utils/capitalize";
 
 export const registerFn = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => registerSchema.parse(data))
@@ -25,7 +26,7 @@ export const registerFn = createServerFn({ method: "POST" })
     const [user] = await db
       .insert(usersTable)
       .values({
-        name: data.name,
+        name: capitalizeText(data.name),
         phone: data.phone,
         passwordHash,
         role: "owner",

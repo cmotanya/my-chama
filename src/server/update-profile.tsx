@@ -4,6 +4,7 @@ import { useAppSession } from "../../lib/session";
 import { usersTable } from "#/db/schema";
 import { db } from "#/db";
 import { eq } from "drizzle-orm";
+import { capitalizeText } from "../../lib/utils/capitalize";
 
 export const updateProfileFn = createServerFn({
   method: "POST",
@@ -19,7 +20,7 @@ export const updateProfileFn = createServerFn({
     // try {
     await db
       .update(usersTable)
-      .set({ name: data.name, phone: data.phone })
+      .set({ name: capitalizeText(data.name), phone: data.phone })
       .where(eq(usersTable.id, Number(session.data.userId)));
 
     await session.update({ ...session.data });

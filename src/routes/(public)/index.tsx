@@ -16,7 +16,7 @@ import {
   steps,
   testimonials,
 } from "../../../data/landing";
-import { cn } from "../../../lib/cn";
+import { cn } from "../../../lib/utils/cn";
 
 export const Route = createFileRoute("/(public)/")({ component: App });
 

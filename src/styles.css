@@ -57,7 +57,7 @@
     @apply border-border box-border outline-none;
   }
   html {
-    @apply scroll-smooth font-sans antialiased select-none;
+    @apply scroll-smooth font-sans antialiased;
   }
   body {
     @apply bg-background text-foreground text-base;
@@ -78,7 +78,7 @@
   background: var(--foreground);
   color: var(--background);
   width: 100%;
-  padding-block: 18px;
+  padding-block: 16px;
   text-align: center;
   font-size: 16px;
   border-radius: var(--radius);

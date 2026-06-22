@@ -1,12 +1,11 @@
 import { revalidateLogic, useForm } from "@tanstack/react-form";
-import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
 import toast from "react-hot-toast";
 import { updateProfileSchema } from "../../../lib/validations/schema";
 import TextField from "#/components/text-field";
-import { cn } from "../../../lib/cn";
+import { cn } from "../../../lib/utils/cn";
 import { useEffect, useState } from "react";
 import { Avatar } from "#/components/dashboard/avatar";
-import { ArrowLeft02Icon } from "hugeicons-react";
 import { updateProfileFn } from "#/server/update-profile";
 import { handleDeleteAccount } from "#/components/dashboard/handle-delete-account";
 
@@ -63,17 +62,7 @@ function ProfilePage() {
   }, [confirm]);
 
   return (
-    <section className="my-16 space-y-10">
-      <div className="fu1 ms-4 w-fit">
-        <Link
-          to="/dashboard"
-          className="active:bg-muted flex cursor-pointer items-center gap-2 rounded-xl border p-3 font-semibold uppercase transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:opacity-85 active:scale-95"
-        >
-          <ArrowLeft02Icon strokeWidth={2} />
-          Back
-        </Link>
-      </div>
-
+    <section className="my-10 space-y-10">
       <div className="space-y-2 px-5">
         <div className="flex items-center justify-center gap-4">
           <Avatar

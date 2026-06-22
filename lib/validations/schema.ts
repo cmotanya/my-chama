@@ -27,26 +27,26 @@ const phoneField = z.string().superRefine((value, ctx) => {
 
 const passwordField = z
   .string()
-  .min(6, { message: "Password must be at least 6 characters long" })
-  .max(20, { message: "Password too long" });
+  .min(6, { error: "Password must be at least 6 characters long" })
+  .max(20, { error: "Password too long" });
 
 const nameField = z
   .string()
-  .min(3, { message: "Name is too short" })
-  .max(40, { message: "Name is too long" });
+  .min(3, { error: "Name is too short" })
+  .max(40, { error: "Name is too long" });
 
 const chamaNameField = z
   .string()
-  .min(3, { message: "Chama name must be at least 3 characters" });
+  .min(3, { error: "Chama name must be at least 3 characters" });
 
 export const memberCountField = z
   .number({ error: "Enter a valid number" })
-  .min(2, { message: "A chama needs at least 2 members" })
-  .max(100, { message: "Maximum 100 members" });
+  .min(5, { error: "A chama needs at least 5 members" })
+  .max(100, { error: "Maximum 100 members" });
 
 export const contributionAmountField = z
   .number({ error: "Enter a valid amount" })
-  .min(100, { message: "Minimum contribution is KES 100" });
+  .min(100, { error: "Minimum contribution is KES 100" });
 
 // ================ LOGIN Schema ======================//
 export const loginSchema = z.object({
@@ -73,11 +73,32 @@ export const onboardingSchema = z.object({
   memberCount: memberCountField,
   contributionAmount: contributionAmountField,
   contributionFrequency: z.enum(["weekly", "monthly"]),
-  groupType: z.enum(["merry-go-round", "lending"]),
+  groupType: z.enum(["merry_go_round", "lending"]),
 });
 
 // ============UPDATE PROFILE=================//
 export const updateProfileSchema = z.object({
   name: nameField,
   phone: phoneField,
+});
+
+// ============MEMBERS========================
+export const membersSchema = z.object({
+  chamaId: z.number(),
+  name: nameField,
+  phone: phoneField,
+  role: z.enum(["admin", "owner", "member"]),
+});
+
+// ===========UPDATE MEMBER====================
+export const updateMembersSchema = z.object({
+  id: z.number(),
+  name: nameField,
+  phone: phoneField,
+  role: z.enum(["owner", "member"]),
+});
+
+// =============REMOVER MEMBER====================
+export const removeMemberSchema = z.object({
+  memberId: z.number(),
 });

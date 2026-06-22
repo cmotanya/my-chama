@@ -19,13 +19,18 @@ function applyThemeMode(mode: ThemeMode) {
 
 export default function ThemeToggle() {
   const [mode, setMode] = useState<ThemeMode>(getInitialMode);
+  const [mounted, setMounted] = useState(false);
   const [phase, setPhase] = useState<IconPhase>("enter");
   const [ripple, setRipple] = useState(false);
   const animating = useRef(false);
 
   useEffect(() => {
-    applyThemeMode(mode);
-  }, [mode]);
+    const resolved = document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light";
+    setMode(resolved);
+    setMounted(true);
+  }, []);
 
   function toggleMode() {
     if (animating.current) return;
@@ -37,8 +42,8 @@ export default function ThemeToggle() {
     setTimeout(() => {
       const next: ThemeMode = mode === "light" ? "dark" : "light";
       setMode(next);
+      applyThemeMode(next);
       setPhase("enter");
-      localStorage.setItem("theme", next);
       setTimeout(() => {
         animating.current = false;
       }, 320);
@@ -79,11 +84,13 @@ export default function ThemeToggle() {
       {/* Icon */}
       <span
         aria-hidden="true"
+        suppressHydrationWarning
         className={[
           "absolute flex items-center justify-center",
           phase === "enter"
             ? "animate-[theme-icon-enter_320ms_cubic-bezier(0.34,1.4,0.64,1)_forwards]"
             : "animate-[theme-icon-exit_200ms_cubic-bezier(0.4,0,1,1)_forwards]",
+          mounted ? "opacity-100" : "opacity-0",
         ].join(" ")}
       >
         {isLight ? <Sun /> : <Moon />}

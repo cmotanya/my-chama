@@ -2,7 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { useAppSession } from "../../lib/session";
 import { db } from "#/db";
 import { chamasTable, usersTable } from "#/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, or } from "drizzle-orm";
 
 export const deleteAccountFn = createServerFn({
   method: "POST",
@@ -17,7 +17,7 @@ export const deleteAccountFn = createServerFn({
     const userIdNumeric = Number(session.data.userId);
 
     const users = await db
-      .select({ role: usersTable.role })
+      .select({ role: usersTable.role, chamaId: usersTable.chamaId })
       .from(usersTable)
       .where(eq(usersTable.id, userIdNumeric))
       .limit(1);
@@ -29,9 +29,14 @@ export const deleteAccountFn = createServerFn({
     const user = users[0];
 
     if (user.role === "owner") {
-      await db
-        .delete(chamasTable)
-        .where(eq(chamasTable.ownerId, userIdNumeric));
+      const chamaFilter = user.chamaId
+        ? or(
+            eq(chamasTable.id, user.chamaId),
+            eq(chamasTable.ownerId, userIdNumeric),
+          )
+        : eq(chamasTable.ownerId, userIdNumeric);
+
+      await db.delete(chamasTable).where(chamaFilter);
     }
 
     await db.delete(usersTable).where(eq(usersTable.id, userIdNumeric));
