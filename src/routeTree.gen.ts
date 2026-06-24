@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as NotFoundRouteImport } from './routes/not-found'
 import { Route as AuthedRouteRouteImport } from './routes/_authed/route'
 import { Route as publicRouteRouteImport } from './routes/(public)/route'
 import { Route as authRouteRouteImport } from './routes/(auth)/route'
@@ -21,11 +20,6 @@ import { Route as AuthedDashboardRouteImport } from './routes/_authed/dashboard'
 import { Route as authSignupRouteImport } from './routes/(auth)/signup'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
 
-const NotFoundRoute = NotFoundRouteImport.update({
-  id: '/not-found',
-  path: '/not-found',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AuthedRouteRoute = AuthedRouteRouteImport.update({
   id: '/_authed',
   getParentRoute: () => rootRouteImport,
@@ -76,7 +70,6 @@ const authLoginRoute = authLoginRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof publicIndexRoute
-  '/not-found': typeof NotFoundRoute
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
   '/dashboard': typeof AuthedDashboardRoute
@@ -86,7 +79,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof publicIndexRoute
-  '/not-found': typeof NotFoundRoute
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
   '/dashboard': typeof AuthedDashboardRoute
@@ -99,7 +91,6 @@ export interface FileRoutesById {
   '/(auth)': typeof authRouteRouteWithChildren
   '/(public)': typeof publicRouteRouteWithChildren
   '/_authed': typeof AuthedRouteRouteWithChildren
-  '/not-found': typeof NotFoundRoute
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/signup': typeof authSignupRoute
   '/_authed/dashboard': typeof AuthedDashboardRoute
@@ -112,7 +103,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/not-found'
     | '/login'
     | '/signup'
     | '/dashboard'
@@ -122,7 +112,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/not-found'
     | '/login'
     | '/signup'
     | '/dashboard'
@@ -134,7 +123,6 @@ export interface FileRouteTypes {
     | '/(auth)'
     | '/(public)'
     | '/_authed'
-    | '/not-found'
     | '/(auth)/login'
     | '/(auth)/signup'
     | '/_authed/dashboard'
@@ -148,18 +136,10 @@ export interface RootRouteChildren {
   authRouteRoute: typeof authRouteRouteWithChildren
   publicRouteRoute: typeof publicRouteRouteWithChildren
   AuthedRouteRoute: typeof AuthedRouteRouteWithChildren
-  NotFoundRoute: typeof NotFoundRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/not-found': {
-      id: '/not-found'
-      path: '/not-found'
-      fullPath: '/not-found'
-      preLoaderRoute: typeof NotFoundRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_authed': {
       id: '/_authed'
       path: ''
@@ -281,7 +261,6 @@ const rootRouteChildren: RootRouteChildren = {
   authRouteRoute: authRouteRouteWithChildren,
   publicRouteRoute: publicRouteRouteWithChildren,
   AuthedRouteRoute: AuthedRouteRouteWithChildren,
-  NotFoundRoute: NotFoundRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

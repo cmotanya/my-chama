@@ -56,11 +56,11 @@ function App() {
 
         <div className="fu4 flex w-full flex-col gap-4 px-8 font-semibold tracking-widest">
           <Link to="/login" preload="intent" className="btn-primary shadow-xl">
-            Launch Test Demo
+            Launch A Test Demo
           </Link>
 
           <a href="#features" className="btn-outline shadow-xl">
-            Explore Features
+            Explore Our Features
           </a>
         </div>
 

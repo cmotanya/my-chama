@@ -1,7 +1,6 @@
 import Header from "#/components/dashboard/header/header";
 import { getCurrentUserFn } from "#/server/get-current-user";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
-import { THEME_INIT_SCRIPT } from "../../../lib/utils/theme-script";
 
 export const Route = createFileRoute("/_authed")({
   beforeLoad: async ({ location }) => {
@@ -38,7 +37,6 @@ export const Route = createFileRoute("/_authed")({
 function AuthedLayout() {
   return (
     <>
-      <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       <Header />
       <Outlet />
     </>

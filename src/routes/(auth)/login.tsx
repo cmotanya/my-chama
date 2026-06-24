@@ -44,7 +44,7 @@ function LoginPage() {
     },
   });
   return (
-    <div className="my-16 space-y-10">
+    <section className="my-16 h-screen flex-1 space-y-10">
       <h1 className="fu1 font-unbounded px-3 text-center text-3xl font-bold">
         Sign in to Your Chama Dashboard{" "}
       </h1>
@@ -111,12 +111,12 @@ function LoginPage() {
           <Link
             to="/signup"
             preload="intent"
-            className="font-unbounded text-primary flex items-center gap-1 text-sm font-bold uppercase"
+            className="font-unbounded text-primary flex items-center gap-1 text-sm font-bold uppercase underline underline-offset-4"
           >
             Create A Workspace <ArrowRight02Icon size={18} strokeWidth={2} />
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

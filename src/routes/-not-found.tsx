@@ -1,13 +1,7 @@
 import Header from "#/components/header";
-import { createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft02Icon, Unlink04Icon } from "hugeicons-react";
-import { THEME_INIT_SCRIPT } from "../../lib/utils/theme-script";
 
-export const Route = createFileRoute("/not-found")({
-  component: notFound,
-});
-
-function notFound() {
+export function GlobalNotFound() {
   return (
     <section className="h-dvh w-full">
       <Header />
@@ -46,8 +40,6 @@ function notFound() {
           </button>
         </div>
       </div>
-
-      <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
     </section>
   );
 }

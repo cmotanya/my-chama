@@ -4,7 +4,7 @@ import { db } from "#/db";
 import { eq } from "drizzle-orm";
 import { chamasTable, membersTable, usersTable } from "#/db/schema";
 
-export const getMembersFn = createServerFn({ method: "POST" }).handler(
+export const getMembersFn = createServerFn({ method: "GET" }).handler(
   async () => {
     try {
       const session = await useAppSession();
@@ -42,7 +42,11 @@ export const getMembersFn = createServerFn({ method: "POST" }).handler(
         },
       };
     } catch {
-      return { success: false, error: "No chama found", data: null };
+      return {
+        success: false,
+        error: "Failed to retrieve members list",
+        data: null,
+      };
     }
   },
 );

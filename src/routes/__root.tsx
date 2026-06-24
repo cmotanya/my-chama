@@ -1,8 +1,9 @@
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import { NotFound } from "./not-found";
 import { RouteErrorComponent } from "#/components/error-component";
+import { THEME_INIT_SCRIPT } from "../../lib/utils/theme-script";
+import { GlobalNotFound } from "./-not-found";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -36,7 +37,7 @@ export const Route = createRootRoute({
     ],
   }),
   errorComponent: RouteErrorComponent,
-  notFoundComponent: () => <NotFound />,
+  notFoundComponent: GlobalNotFound,
   shellComponent: RootDocument,
 });
 
@@ -44,6 +45,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
       </head>
       <body className="font-sora flex min-h-dvh flex-col antialiased">

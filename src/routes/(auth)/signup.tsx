@@ -53,7 +53,7 @@ function SignupPage() {
   });
 
   return (
-    <div className="my-8 space-y-10">
+    <section className="flex-1 space-y-10 py-8">
       <h1 className="fu1 font-unbounded px-3 text-center text-3xl font-bold">
         Start Managing Your Chama in Minutes
       </h1>
@@ -146,12 +146,12 @@ function SignupPage() {
           <Link
             to="/login"
             preload="intent"
-            className="font-unbounded text-primary flex cursor-pointer items-center gap-1 text-sm font-bold uppercase"
+            className="font-unbounded text-primary flex cursor-pointer items-center gap-1 text-sm font-bold uppercase underline underline-offset-4"
           >
             Sign In here <ArrowRight02Icon size={18} strokeWidth={2} />
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

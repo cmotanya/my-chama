@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import HamburgerMenu from "./hamburger";
 import { cn } from "../../../../lib/utils/cn";
 import { navigation_links } from "../../../../data/navigation-links";
@@ -53,7 +53,7 @@ const MobileNavigation = () => {
           <div className="flex items-center justify-between px-3">
             <ThemeToggle />
 
-            <button onClick={() => setIsOpen(false)}>
+            <button onClick={() => setIsOpen(false)} className="cursor-pointer">
               {" "}
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <path
@@ -108,13 +108,12 @@ const MobileNavigation = () => {
                   fill="var(--border)"
                   strokeWidth={2}
                 />
-                <div className="text-muted-foreground flex min-w-0 flex-col text-xs font-semibold">
-                  <p className="tracking-widest uppercase">{user.name}</p>
-                  <p>
-                    role:{" "}
-                    <span className="tracking-widest uppercase">
-                      {user.role}
-                    </span>
+                <div className="flex min-w-0 flex-col tracking-tight">
+                  <p className="text-primary text-sm font-semibold">
+                    {user.name}
+                  </p>
+                  <p className="text-muted-foreground/90 text-[10px]">
+                    Role: <span className="capitalize">{user.role}</span>
                   </p>
                 </div>
               </div>
